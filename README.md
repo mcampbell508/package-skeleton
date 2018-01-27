@@ -11,6 +11,7 @@ Package Skeleton
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Code Style](#code-style)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -45,6 +46,19 @@ use MCampbell508\Skeleton;
 $skeleton = new Skeleton();
 echo $skeleton->echoPhrase('Hello, World!');
 
+```
+
+Code Style
+-------
+
+This project follows the following code style guidelines:
+
+- [PSR-2](http://www.php-fig.org/psr/psr-2/) & [PSR-4](http://www.php-fig.org/psr/psr-4/) coding style guidelines.
+- Some chosen [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) rules.
+
+
+``` bash
+$ php vendor/bin/php-cs-fixer fix
 ```
 
 

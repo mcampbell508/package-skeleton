@@ -6,9 +6,11 @@ php:
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  - chmod +x ${PWD}/php-cs-fixer.sh
 
 script:
   - php vendor/bin/phpunit --coverage-text
+  - ${PWD}/php-cs-fixer.sh
 
 matrix:
   fast_finish: true

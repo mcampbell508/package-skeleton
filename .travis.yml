@@ -7,6 +7,11 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+# Only run tests when master branch changes or when a PR branch is updated.
+branches:
+  only:
+  - master
+
 before_script:
   - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update

@@ -1,6 +1,8 @@
 <?php
 
-use SammyK\Skeleton\SkeletonClass;
+namespace MCampbell508\Tests;
+
+use MCampbell508\Skeleton\SkeletonClass;
 
 class SkeletonClassTest extends \PHPUnit_Framework_TestCase
 {

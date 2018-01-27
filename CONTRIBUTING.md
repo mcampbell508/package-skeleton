@@ -3,7 +3,7 @@ Contributing
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/SammyK/package-skeleton).
+We accept contributions via Pull Requests on [Github](https://github.com/mcampbell508/package-skeleton).
 
 
 Pull Requests
@@ -14,6 +14,8 @@ Pull Requests
 - **Add unit tests!** - Your patch won't be accepted if it doesn't have tests.
 
 - **Document any change in behavior** - Make sure the README and any other relevant documentation are kept up-to-date.
+
+- **Use types over PhpDocBlocks** - Try to declare arguments types and return types, over using unnecessary PhpDocBlocks.
 
 - **Consider our release cycle** - We try to follow [semver](http://semver.org/). Randomly breaking public APIs is not an option.
 

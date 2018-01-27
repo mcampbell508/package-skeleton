@@ -1,13 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-use SammyK\Skeleton\SkeletonClass;
+namespace MCampbell508\Tests;
+
+use MCampbell508\Skeleton\SkeletonClass;
 
 class SkeletonClassTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Test that true does in fact equal true
-     */
-    public function testEchoPhrase()
+    public function testEchoPhrase(): void
     {
         $myObj = new SkeletonClass();
 

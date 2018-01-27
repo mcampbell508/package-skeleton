@@ -1,19 +1,16 @@
 language: php
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
+  - 7.1
 
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  - chmod +x ${PWD}/php-cs-fixer.sh
 
 script:
-  - phpunit --coverage-text
+  - php vendor/bin/phpunit --coverage-text
+  - ${PWD}/php-cs-fixer.sh
 
 matrix:
-  allow_failures:
-    - php: hhvm
   fast_finish: true

@@ -3,8 +3,9 @@
 namespace MCampbell508\Tests;
 
 use MCampbell508\Skeleton\SkeletonClass;
+use PHPUnit\Framework\TestCase;
 
-class SkeletonClassTest extends \PHPUnit_Framework_TestCase
+class SkeletonClassTest extends TestCase
 {
     public function testEchoPhrase(): void
     {

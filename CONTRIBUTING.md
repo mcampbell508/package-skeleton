@@ -15,6 +15,8 @@ Pull Requests
 
 - **Document any change in behavior** - Make sure the README and any other relevant documentation are kept up-to-date.
 
+- **Use types over PhpDocBlocks** - Try to declare arguments types and return types, over using unnecessary PhpDocBlocks.
+
 - **Consider our release cycle** - We try to follow [semver](http://semver.org/). Randomly breaking public APIs is not an option.
 
 - **Create topic branches** - Don't ask us to pull from your master branch.

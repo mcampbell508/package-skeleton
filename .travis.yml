@@ -3,21 +3,19 @@ language: php
 php:
   - 7.1
 
-stages:
-  - test
-  - code_style
-
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  #- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then COMMIT_RANGE=$TRAVIS_COMMIT_RANGE; else COMMIT_RANGE="HEAD~..HEAD"; fi;
+  #- export COMMIT_SCA_FILES=`git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
+  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${COMMIT_RANGE}")
+  - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi
+script:
+  - script: php vendor/bin/phpunit --coverage-text
+  - chmod +x php-cs-fixer.sh
+  #- ./php-cs-fixer.sh
+  - php vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no "${EXTRA_ARGS[@]}"
+  #- php vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --using-cache=no
 
-jobs:
-  include:
-    - stage: test
-      script: php vendor/bin/phpunit --coverage-text
-    - stage: code_style
-      script:
-        - chmod +x php-cs-fixer.sh
-        - ./php-cs-fixer.sh
 matrix:
   fast_finish: true

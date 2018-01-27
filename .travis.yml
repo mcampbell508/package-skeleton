@@ -3,19 +3,20 @@ language: php
 php:
   - 7.1
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 before_script:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
-  #- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then COMMIT_RANGE=$TRAVIS_COMMIT_RANGE; else COMMIT_RANGE="HEAD~..HEAD"; fi;
-  #- export COMMIT_SCA_FILES=`git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
-  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${COMMIT_RANGE}")
-  - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi
+
 script:
-  - script: php vendor/bin/phpunit --coverage-text
-  - chmod +x php-cs-fixer.sh
-  #- ./php-cs-fixer.sh
-  - php vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no "${EXTRA_ARGS[@]}"
-  #- php vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --using-cache=no
+  - php vendor/bin/phpunit --coverage-text
+  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${TRAVIS_COMMIT_RANGE}")
+  - if ! echo "${CHANGED_FILES}" | grep -qE "^((\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi
+  - vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --stop-on-violation --using-cache=no "${EXTRA_ARGS[@]}"
 
 matrix:
   fast_finish: true

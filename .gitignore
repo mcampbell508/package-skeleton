@@ -5,6 +5,7 @@ Thumbs.db
 /.php_cs
 /.php_cs.cache
 /phpunit.xml
+/phpcs.xml
 
 # OS Generated Files #
 ######################

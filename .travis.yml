@@ -19,6 +19,7 @@ before_script:
 
 script:
   - php vendor/bin/phpunit --coverage-text
+  - php vendor/bin/phpcs
   - php vendor/bin/phpstan analyse src tests .php_cs.dist -c phpstan.neon -l 7
   - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${TRAVIS_COMMIT_RANGE}")
   - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi

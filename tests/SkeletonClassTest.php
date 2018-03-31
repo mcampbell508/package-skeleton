@@ -7,7 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 class SkeletonClassTest extends TestCase
 {
-    public function testEchoPhrase(): void
+    /**
+     * @test
+     */
+    public function echo_phrase(): void
     {
         $myObj = new SkeletonClass();
 
